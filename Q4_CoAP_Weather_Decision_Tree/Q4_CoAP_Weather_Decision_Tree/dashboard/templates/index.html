@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kochi Weather Monitor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+    <div>
+        <h1>Kochi Weather Monitor</h1>
+        <p>CoAP + Open-Meteo + Decision Tree</p>
+    </div>
+    <div class="badge">LIVE</div>
+</header>
+
+<main>
+    <section class="flow">
+        <span>Weather API</span>
+        <b>→</b>
+        <span>CoAP Server</span>
+        <b>→</b>
+        <span>CoAP Client</span>
+        <b>→</b>
+        <span>Dashboard</span>
+        <b>→</b>
+        <span>Decision Tree</span>
+    </section>
+
+    <section class="hero">
+        <p class="label">Predicted Weather Class</p>
+        <h2 id="prediction">Loading...</h2>
+        <p id="updated">Waiting for data...</p>
+    </section>
+
+    <section class="grid">
+        <div class="card">
+            <h3>Temperature</h3>
+            <div class="value" id="temperature">--</div>
+            <small>°C</small>
+        </div>
+
+        <div class="card">
+            <h3>Relative Humidity</h3>
+            <div class="value" id="humidity">--</div>
+            <small>%</small>
+        </div>
+
+        <div class="card">
+            <h3>Precipitation</h3>
+            <div class="value" id="precipitation">--</div>
+            <small>mm</small>
+        </div>
+
+        <div class="card">
+            <h3>Cloud Cover</h3>
+            <div class="value" id="cloud_cover">--</div>
+            <small>%</small>
+        </div>
+
+        <div class="card">
+            <h3>Wind Speed</h3>
+            <div class="value" id="wind_speed">--</div>
+            <small>km/h</small>
+        </div>
+
+        <div class="card">
+            <h3>Surface Pressure</h3>
+            <div class="value" id="surface_pressure">--</div>
+            <small>hPa</small>
+        </div>
+    </section>
+
+    <section class="info">
+        <h3>System Information</h3>
+        <p><strong>Location:</strong> Kochi, Kerala</p>
+        <p><strong>Coordinates:</strong> 9.93, 76.27</p>
+        <p><strong>Model:</strong> Decision Tree Classifier</p>
+        <p><strong>Features:</strong> Temperature, Humidity, Precipitation, Cloud Cover, Wind Speed, Surface Pressure</p>
+        <p><strong>Target:</strong> weather_class</p>
+        <p><strong>Classes:</strong> Clear, Cloudy, Drizzle, Rain</p>
+        <p><strong>Source:</strong> Open-Meteo Weather API</p>
+    </section>
+
+    <p id="error" class="error"></p>
+</main>
+
+<footer>Refreshing every 60 seconds</footer>
+
+<script>
+async function loadData() {
+    const error = document.getElementById("error");
+    error.textContent = "";
+
+    try {
+        const response = await fetch("/api/live");
+        const data = await response.json();
+
+        if (!response.ok || data.status === "error") {
+            throw new Error(data.error || "Unable to retrieve data");
+        }
+
+        document.getElementById("temperature").textContent = format(data.temperature);
+        document.getElementById("humidity").textContent = format(data.humidity);
+        document.getElementById("precipitation").textContent = format(data.precipitation);
+        document.getElementById("cloud_cover").textContent = format(data.cloud_cover);
+        document.getElementById("wind_speed").textContent = format(data.wind_speed);
+        document.getElementById("surface_pressure").textContent = format(data.surface_pressure);
+
+        document.getElementById("prediction").textContent = data.prediction || "Unknown";
+        document.getElementById("updated").textContent =
+            "API reading time: " + (data.time || "N/A");
+
+    } catch (e) {
+        error.textContent = "Error: " + e.message;
+        document.getElementById("prediction").textContent = "Unavailable";
+    }
+}
+
+function format(value) {
+    if (value === null || value === undefined) return "--";
+    const n = Number(value);
+    return Number.isFinite(n) ? n.toFixed(2) : "--";
+}
+
+loadData();
+setInterval(loadData, 60000);
+</script>
+</body>
+</html>

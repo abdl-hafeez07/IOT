@@ -1,0 +1,16 @@
+ESP32 + LDR VOLTAGE DIVIDER
+
+             LDR
+3.3V --------/\/\--------+-------- GPIO 34 (ADC)
+                         |
+                       10 kΩ
+                         |
+GND ---------------------+
+
+Connections:
+LDR terminal 1 -> ESP32 3.3V
+LDR terminal 2 -> ESP32 GPIO 34
+10 kΩ resistor terminal 1 -> GPIO 34
+10 kΩ resistor terminal 2 -> ESP32 GND
+
+GPIO 34 is used as the analog input.

@@ -1,0 +1,9 @@
+This demo_city_day.csv exists only to verify that the project code can read the expected column names.
+
+IMPORTANT:
+It is NOT the required Kaggle historical dataset and must NOT be presented as the actual dataset for the 30-mark question.
+
+For the actual practical:
+1. Download the official Kaggle Air Quality Data in India dataset.
+2. Put its city_day.csv into data/
+3. Run python model/train_model.py

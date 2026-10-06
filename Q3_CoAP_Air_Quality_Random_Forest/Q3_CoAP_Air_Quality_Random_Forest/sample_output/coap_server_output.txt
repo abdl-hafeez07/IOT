@@ -1,0 +1,23 @@
+============================================================
+CoAP Air Quality Server - Kochi
+============================================================
+Listening on coap://127.0.0.1:5683/air-quality
+Waiting for CoAP GET requests...
+
+[CoAP Server] GET /air-quality
+[CoAP Server] Live Kochi data: {
+  'location': 'Kochi',
+  'latitude': 9.93,
+  'longitude': 76.27,
+  'time': '2026-10-06T21:00',
+  'pm2_5': 24.8,
+  'pm10': 48.2,
+  'no2': 18.1,
+  'so2': 4.6,
+  'o3': 62.4,
+  'source': 'Open-Meteo Air Quality API'
+}
+
+NOTE:
+The numbers above are demonstration examples only.
+Your actual API readings will be different.

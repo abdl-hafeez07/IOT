@@ -1,0 +1,99 @@
+Q4. CoAP-Based Weather Monitoring and Decision Tree Classification
+
+Aim:
+To develop a CoAP-based weather monitoring and classification system for Kochi using live weather data from the Open-Meteo API and a Decision Tree classifier trained with historical Open-Meteo weather data.
+
+Input Parameters:
+1. Temperature
+2. Relative Humidity
+3. Precipitation
+4. Cloud Cover
+5. Wind Speed
+6. Surface Pressure
+
+Architecture:
+Open-Meteo Weather API -> CoAP Server -> CoAP Client -> Dashboard -> Decision Tree Classification
+
+Historical Dataset:
+Historical hourly weather data is retrieved from the Open-Meteo Historical Weather API for Kochi from 2023-01-01 to 2025-12-31.
+
+The historical dataset contains:
+temperature, humidity, precipitation, cloud_cover, wind_speed, surface_pressure and weather_code.
+
+Weather code mapping:
+0, 1       -> Clear
+2, 3        -> Cloudy
+51,53,55    -> Drizzle
+61,63,65    -> Rain
+
+1. CoAP Server and Client:
+A Python CoAP server is developed using aiocoap. It provides:
+coap://127.0.0.1:5683/weather
+
+The CoAP client sends a GET request to this resource.
+
+2. Retrieve live weather:
+When the CoAP server receives GET /weather, it sends a request to the Open-Meteo Weather API for Kochi and retrieves the current six weather parameters.
+
+3. Transfer using CoAP:
+The server returns the retrieved values as JSON in the CoAP response. The CoAP client receives the JSON data.
+
+4. Dashboard:
+A Flask dashboard displays:
+- Temperature
+- Relative Humidity
+- Precipitation
+- Cloud Cover
+- Wind Speed
+- Surface Pressure
+- Predicted weather class
+
+5. Decision Tree:
+The historical weather dataset is used for training.
+
+Input features:
+Temperature
+Relative Humidity
+Precipitation
+Cloud Cover
+Wind Speed
+Surface Pressure
+
+Target:
+weather_class
+
+The weather_class is derived from weather_code using the specified mapping.
+
+6. Classification:
+The trained Decision Tree receives the current six weather parameters and predicts one of:
+- Clear
+- Cloudy
+- Drizzle
+- Rain
+
+7. Result:
+The system demonstrates:
+
+Open-Meteo Weather API
+          ↓
+CoAP Server
+          ↓
+CoAP Client
+          ↓
+Dashboard
+          ↓
+Decision Tree
+          ↓
+Clear / Cloudy / Drizzle / Rain
+
+Sample values:
+Temperature = 27.4 °C
+Relative Humidity = 82 %
+Precipitation = 0.0 mm
+Cloud Cover = 62 %
+Wind Speed = 9.1 km/h
+Surface Pressure = 1008.4 hPa
+Predicted Class = Cloudy
+
+Note:
+Sample values are for demonstration only. Actual live values change with time.

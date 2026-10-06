@@ -1,0 +1,21 @@
+DHT22 -> ESP32 CONNECTION
+
+DHT22 (front view)
++-------------------+
+|      DHT22        |
+|                   |
+|  1   2   3   4    |
++-------------------+
+   |   |   |   |
+   |   |   |   +------ GND
+   |   |   +---------- NC (leave unconnected)
+   |   +-------------- DATA -> ESP32 GPIO 4
+   +------------------ VCC  -> ESP32 3.3V
+
+For a bare 4-pin DHT22:
+10 kΩ resistor between VCC (Pin 1) and DATA (Pin 2).
+
+ESP32:
+3V3  -> DHT22 VCC
+GPIO4 -> DHT22 DATA
+GND  -> DHT22 GND

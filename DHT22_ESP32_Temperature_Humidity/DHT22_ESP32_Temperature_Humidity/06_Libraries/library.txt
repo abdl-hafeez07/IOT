@@ -1,0 +1,9 @@
+Arduino Library Required
+
+1. DHT sensor library by Adafruit
+2. Adafruit Unified Sensor (install if Arduino IDE requests it)
+
+Arduino IDE:
+Sketch -> Include Library -> Manage Libraries
+Search for: DHT sensor library
+Install: DHT sensor library by Adafruit

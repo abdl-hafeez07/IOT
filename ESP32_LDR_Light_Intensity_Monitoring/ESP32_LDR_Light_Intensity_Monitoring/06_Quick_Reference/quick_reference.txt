@@ -1,0 +1,20 @@
+QUICK EXAM REFERENCE
+
+Controller : ESP32
+Sensor     : LDR
+ADC Pin    : GPIO 34
+Supply     : 3.3V
+Resistor   : 10 kΩ
+Baud Rate  : 115200
+ADC Range  : 0 to 4095
+Library    : None required
+
+Wiring:
+3.3V -> LDR -> GPIO34 -> 10kΩ -> GND
+
+Key point:
+LDR resistance changes with light. The voltage divider converts this resistance change into an analog voltage, which the ESP32 ADC reads.
+
+For the given wiring:
+More light -> generally higher ADC reading
+Less light -> generally lower ADC reading

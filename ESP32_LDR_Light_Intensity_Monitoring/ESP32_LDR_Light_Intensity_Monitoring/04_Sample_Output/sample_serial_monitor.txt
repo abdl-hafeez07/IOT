@@ -1,0 +1,14 @@
+ESP32 LDR Light Intensity Monitor
+---------------------------------
+LDR ADC Value: 3250   Voltage: 2.62 V
+LDR ADC Value: 3180   Voltage: 2.56 V
+LDR ADC Value: 3050   Voltage: 2.46 V
+LDR ADC Value: 2100   Voltage: 1.69 V
+LDR ADC Value: 850    Voltage: 0.68 V
+LDR ADC Value: 620    Voltage: 0.50 V
+
+Example interpretation:
+- Higher ADC value -> brighter light (with the given wiring)
+- Lower ADC value -> darker light
+
+Actual readings will vary with the sensor and environment.

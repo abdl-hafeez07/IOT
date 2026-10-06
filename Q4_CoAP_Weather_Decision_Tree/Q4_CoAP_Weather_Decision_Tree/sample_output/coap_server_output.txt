@@ -1,0 +1,22 @@
+============================================================
+CoAP Weather Server - Kochi
+============================================================
+Listening on coap://127.0.0.1:5683/weather
+Waiting for CoAP GET requests...
+
+[CoAP Server] GET /weather
+[CoAP Server] Live Kochi weather:
+{
+  'location': 'Kochi',
+  'time': '2026-10-06T21:00',
+  'temperature': 27.4,
+  'humidity': 82,
+  'precipitation': 0.0,
+  'cloud_cover': 62,
+  'wind_speed': 9.1,
+  'surface_pressure': 1008.4
+}
+
+NOTE:
+The numbers are demonstration examples only.
+Actual live API values will change.

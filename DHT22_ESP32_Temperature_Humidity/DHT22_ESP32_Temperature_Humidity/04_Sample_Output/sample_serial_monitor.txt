@@ -1,0 +1,6 @@
+ESP32 DHT22 Temperature and Humidity Monitor
+--------------------------------------------
+Temperature: 28.4 °C   Humidity: 67.2 %
+Temperature: 28.5 °C   Humidity: 66.9 %
+Temperature: 28.6 °C   Humidity: 66.5 %
+Temperature: 28.7 °C   Humidity: 66.1 %

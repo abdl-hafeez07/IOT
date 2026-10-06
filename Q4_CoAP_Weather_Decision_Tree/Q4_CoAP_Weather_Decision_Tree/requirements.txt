@@ -1,0 +1,7 @@
+aiocoap
+requests
+flask
+pandas
+numpy
+scikit-learn
+joblib

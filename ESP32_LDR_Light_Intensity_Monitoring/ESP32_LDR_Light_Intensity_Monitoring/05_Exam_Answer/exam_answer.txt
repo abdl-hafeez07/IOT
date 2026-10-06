@@ -1,0 +1,32 @@
+Q. ESP32-based Light Intensity Monitoring using LDR
+
+Aim:
+To develop an ESP32-based light intensity monitoring system using an LDR sensor and display the sensor readings through the Serial Monitor.
+
+Components:
+1. ESP32 development board
+2. LDR sensor
+3. 10 kΩ resistor
+4. Breadboard
+5. Jumper wires
+6. USB cable
+7. Arduino IDE
+
+Connections:
+3.3V -> LDR -> GPIO 34 -> 10 kΩ resistor -> GND
+
+The junction between the LDR and resistor is connected to GPIO 34, which is used as the ESP32 analog input.
+
+Working:
+The LDR changes its resistance according to the amount of light falling on it. The LDR and 10 kΩ resistor form a voltage divider. The ESP32 ADC reads the resulting analog voltage through GPIO 34. The program displays the ADC value and approximate voltage on the Serial Monitor.
+
+Sample output:
+LDR ADC Value: 3250   Voltage: 2.62 V
+LDR ADC Value: 2100   Voltage: 1.69 V
+LDR ADC Value: 850    Voltage: 0.68 V
+
+Demonstration:
+When the LDR is exposed to bright light, the ADC reading changes. When the LDR is covered or placed in darkness, the ADC reading changes significantly. With the given wiring, a brighter condition generally produces a higher ADC value.
+
+Result:
+The LDR was successfully interfaced with ESP32, and changes in light intensity were monitored using the ADC reading displayed on the Serial Monitor.

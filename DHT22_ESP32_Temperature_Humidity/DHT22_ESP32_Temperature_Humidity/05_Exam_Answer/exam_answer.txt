@@ -1,0 +1,32 @@
+Q1. DHT22 Temperature and Humidity Monitoring
+
+Aim:
+To develop an ESP32-based temperature and humidity monitoring system using a DHT22 sensor and display the readings through the Serial Monitor.
+
+Components:
+1. ESP32 development board
+2. DHT22 sensor
+3. 10 kΩ resistor (for a bare DHT22)
+4. Breadboard and jumper wires
+5. USB cable
+6. Arduino IDE
+
+Connections:
+DHT22 VCC -> ESP32 3.3V
+DHT22 DATA -> ESP32 GPIO 4
+DHT22 GND -> ESP32 GND
+DHT22 NC -> Not connected
+
+Program:
+Use the file DHT22_ESP32.ino in the 01_Arduino_Code folder.
+
+Working:
+The ESP32 initializes the DHT22 sensor. The DHT22 measures temperature and relative humidity. The ESP32 reads these values through GPIO 4 and sends them to the Serial Monitor. The readings are updated every 2 seconds.
+
+Sample output:
+Temperature: 28.4 °C   Humidity: 67.2 %
+Temperature: 28.5 °C   Humidity: 66.9 %
+Temperature: 28.6 °C   Humidity: 66.5 %
+
+Result:
+The DHT22 sensor was successfully interfaced with ESP32, and temperature and humidity values were displayed on the Serial Monitor.

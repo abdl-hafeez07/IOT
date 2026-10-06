@@ -1,0 +1,93 @@
+Q3. CoAP-Based Air Quality Monitoring and Random Forest Classification
+
+Aim:
+To develop a CoAP-based air-quality monitoring and classification system for Kochi using live air-quality data from the Open-Meteo API and a Random Forest classifier trained with the historical city_day.csv dataset.
+
+Parameters:
+1. PM2.5
+2. PM10
+3. NO2
+4. SO2
+5. O3
+
+Architecture:
+Air Quality API -> CoAP Server -> CoAP Client -> Dashboard -> Random Forest Classification
+
+Software/Tools:
+- Python
+- aiocoap
+- Requests
+- Flask
+- Pandas
+- Scikit-learn
+- Joblib
+- Open-Meteo Air Quality API
+- Kaggle city_day.csv dataset
+
+1. CoAP Server and Client:
+A Python CoAP server is developed using aiocoap. It provides the resource:
+coap://127.0.0.1:5683/air-quality
+
+The CoAP client sends a GET request to this resource.
+
+2. Retrieve live Kochi air quality:
+When the CoAP server receives GET /air-quality, it requests current PM2.5, PM10, NO2, SO2 and O3 values from the Open-Meteo Air Quality API for Kochi coordinates 9.93, 76.27.
+
+3. Transfer using CoAP GET:
+The server converts the live values into JSON and returns them in the CoAP response. The CoAP client receives and displays the JSON values.
+
+4. Dashboard:
+A Flask dashboard displays:
+- PM2.5
+- PM10
+- NO2
+- SO2
+- O3
+- Predicted AQI category
+- Update time
+
+5. Random Forest:
+The historical city_day.csv dataset is used for training.
+
+Input features:
+PM2.5, PM10, NO2, SO2, O3
+
+Target:
+AQI_Bucket
+
+The training program removes rows without the target, converts sensor columns to numeric values, handles missing feature values using median imputation, and trains a Random Forest Classifier.
+
+6. Classification:
+The trained Random Forest receives the current five pollutant values obtained through the CoAP flow and predicts an AQI_Bucket category such as:
+- Good
+- Satisfactory
+- Moderate
+- Poor
+- Very Poor
+- Severe
+
+7. Result:
+The system successfully demonstrates the complete flow:
+
+Air Quality API
+      ↓
+CoAP Server
+      ↓
+CoAP Client
+      ↓
+Flask Dashboard
+      ↓
+Random Forest
+      ↓
+Predicted AQI_Bucket
+
+Sample dashboard values:
+PM2.5 = 24.8 µg/m³
+PM10  = 48.2 µg/m³
+NO2   = 18.1 µg/m³
+SO2   = 4.6 µg/m³
+O3    = 62.4 µg/m³
+Predicted Category = Moderate
+
+Note:
+The sample values are for demonstration. Actual Open-Meteo values change with time.
